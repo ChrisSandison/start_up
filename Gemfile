@@ -11,7 +11,6 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
-gem 'spring',        group: :development
 
 gem 'font-awesome-rails'
 gem 'font-awesome-sass'
@@ -19,6 +18,7 @@ gem 'haml-rails'
 gem 'simple_form'
 gem 'simple_form_fancy_uploads'
 gem 'cocoon'
+gem 'html2haml'
 
 #profiles
 gem 'devise'
