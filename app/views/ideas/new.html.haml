@@ -1,0 +1,52 @@
+.row
+  %h2 I have an Idea
+.row
+  = simple_form_for @new_idea_form, url: ideas_path do |f|
+    .row
+      .col-lg-8
+
+        .form-group
+          - if f.error_notification.present?
+            .alert.alert-warning
+              = f.error_notification
+          %label{for: 'idea_name'} Idea Name
+          .input-group
+            = f.text_field :title, required: true, class: 'form-control'
+            %span.input-group-addon
+              %span#title_icon.glyphicon.glyphicon-asterisk
+          .error-text#title_error.hidden
+            Please enter a title
+        .form-group
+          %label{for: 'idea_description'} Description
+          .input-group
+            = f.text_area :description, required: true, class: 'form-control', rows: 5, placeholder: "What do you have in mind?"
+            %span.input-group-addon
+              %span#description_icon.glyphicon.glyphicon-asterisk
+          .error-text#description_error.hidden
+            Please enter a description
+
+        .form-group
+          .col-lg-6
+            %label{for: 'idea_industry'} Industry
+            .input-group
+              = f.input :industry, collection: @industries, required: true, label: false
+          .col-lg-6
+            %label{for: 'idea_tag'} Tags
+            .input-group
+              = f.input :tags, label: false, input_html: {data: {role: "tagsinput"}}
+            .hint-text#tag_hint
+
+
+    .row
+      .col-lg-8
+        .submit-button
+          = f.button :submit, "Submit", id: 'submit_button', class: 'btn btn-info btn-block' 
+
+:coffeescript
+
+  $ ->
+    $("select").addClass('form-control')
+    $('.bootstrap-tagsinput input').attr("style", "width=100%")
+
+  $('form').submit (event) ->
+    alert "HERE"

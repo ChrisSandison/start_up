@@ -1,0 +1,34 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$iconSpritePath: image-url("twitter/bootstrap/glyphicons-halflings.png");
+$iconWhiteSpritePath: image-url("twitter/bootstrap/glyphicons-halflings-white.png");
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+$fontAwesomeEotPath: font-url("fontawesome-webfont.eot");
+$fontAwesomeEotPath_iefix: font-url("fontawesome-webfont.eot?#iefix");
+$fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
+$fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
+$fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
+
+
+@import "bootstrap-tagsinput";
+
+.container {
+  margin-right: 40px;
+  margin-left: 40px;
+}
+
+.input-group {
+  width: 100%;
+}
+
+.bootstrap-tagsinput {
+  width: 100%;
+}
+
+.submit-button {
+  margin-top: 20px;
+}
