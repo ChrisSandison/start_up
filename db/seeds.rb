@@ -7,5 +7,5 @@ User.create(
   password_confirmation: "password")
 
 %w(health technology education finance travel).each do |tag|
-  Industry.create(name: tag)
+  Industry.create(name: tag.capitalize)
 end

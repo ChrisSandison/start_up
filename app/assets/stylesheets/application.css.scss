@@ -15,6 +15,7 @@ $fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
 
 @import "bootstrap-tagsinput";
+$error-red: #ff0033;
 
 .container {
   margin-right: 40px;
@@ -31,4 +32,15 @@ $fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
 .submit-button {
   margin-top: 20px;
+}
+
+.error-text{
+  font-weight: 200;
+  color: $error-red;
+  font-size: 14px;
+}
+
+.hint-text {
+  font-weight: 200;
+  font-size: 14px;
 }

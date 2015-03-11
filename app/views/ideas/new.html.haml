@@ -30,11 +30,17 @@
             %label{for: 'idea_industry'} Industry
             .input-group
               = f.input :industry, collection: @industries, required: true, label: false
+            .error-text#industry_error.hidden
+              Please select an industry
           .col-lg-6
             %label{for: 'idea_tag'} Tags
             .input-group
-              = f.input :tags, label: false, input_html: {data: {role: "tagsinput"}}
+              = f.input :tags, label: false, class: 'form-control', input_html: {data: {role: "tagsinput"}}
             .hint-text#tag_hint
+              Press enter to separate tags
+            .error-text#tag_error.hidden
+              Please enter at least one tag
+
 
 
     .row
@@ -43,10 +49,55 @@
           = f.button :submit, "Submit", id: 'submit_button', class: 'btn btn-info btn-block' 
 
 :coffeescript
-
   $ ->
     $("select").addClass('form-control')
     $('.bootstrap-tagsinput input').attr("style", "width=100%")
 
+  $('#new_idea_form_title').bind 'input', ->
+    debugger
+    validate_title()
+
+  $('#new_idea_form_description').bind 'input', ->
+    validate_description()
+
+  $('#new_idea_form_industry').change ->
+    validate_industry()
+
+  validate_title =->
+    if $('#new_idea_form_title').val() == ""
+      $('#title_error').removeClass("hidden")
+      return false
+    else
+      $('#title_error').addClass("hidden")
+      return true
+
+  validate_description =->
+    if $("#new_idea_form_description").val() == ""
+      $('#description_error').removeClass("hidden")
+      return false
+    else
+      $('#description_error').addClass("hidden")
+      return true
+
+  validate_industry =->
+    if $('#new_idea_form_industry').val() == ""
+      $('#industry_error').removeClass("hidden")
+      return false
+    else
+      $('#industry_error').addClass('hidden')
+      return true
+
+  validate_tags =->
+    if $('#new_idea_form_tags').val() == ""
+      $('#tag_error').removeClass("hidden")
+      return false
+    else
+      $('#tag_error').addClass("hidden")
+      return true
+
   $('form').submit (event) ->
-    alert "HERE"
+    debugger
+    if validate_title() && validate_description() && validate_industry() && validate_tags()
+      return true
+    else
+      event.preventDefault()
