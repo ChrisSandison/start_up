@@ -1,0 +1,53 @@
+source 'https://rubygems.org'
+
+gem 'rails', '4.1.8'
+gem 'sqlite3'
+gem 'sass-rails', '~> 4.0.3'
+gem 'bootstrap-sass', '~> 3.3.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder', '~> 2.0'
+gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'spring',        group: :development
+
+gem 'font-awesome-rails'
+gem 'font-awesome-sass'
+gem 'haml-rails'
+gem 'simple_form'
+gem 'simple_form_fancy_uploads'
+gem 'cocoon'
+
+#profiles
+gem 'devise'
+gem 'omniauth'
+gem 'carrierwave'
+
+
+#dashboard
+gem 'will_paginate', '~> 3.0.5'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
+
+group :development, :test do
+  gem 'awesome_print'
+  gem 'rspec-rails'
+  gem 'rspec_junit_formatter'
+  gem 'cucumber-rails', :require => false
+  gem 'spring'
+  gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'pry'
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails', :require => false
+  gem 'faker'
+  gem 'launchy'
+  gem 'randumb'
+end
+
+group :production do
+  gem 'pg'
+end
