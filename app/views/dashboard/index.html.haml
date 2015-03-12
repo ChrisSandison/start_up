@@ -1,1 +1,7 @@
-DASHBOARD
+.row
+  - @ideas.each do |idea|
+    .idea{data: {idea_id: idea.id}}
+      .idea-like.fa.fa-thumbs-up
+      .idea-unlike.fa.fa-thumbs-down
+      .idea-title= idea.title
+      .idea-description= idea.description
