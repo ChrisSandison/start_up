@@ -1,5 +1,6 @@
 User.destroy_all
 Industry.destroy_all
+Idea.destroy_all
 
 User.create(
   email: "chris.sandison@gmail.com",

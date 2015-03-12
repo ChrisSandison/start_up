@@ -13,8 +13,9 @@ $fontAwesomeWoffPath: font-url("fontawesome-webfont.woff");
 $fontAwesomeTtfPath: font-url("fontawesome-webfont.ttf");
 $fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
-
 @import "bootstrap-tagsinput";
+@import "dashboard";
+
 $error-red: #ff0033;
 
 .container {

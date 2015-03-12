@@ -1,7 +1,9 @@
-.row
-  - @ideas.each do |idea|
+- @ideas.each do |idea|
+  .row
     .idea{data: {idea_id: idea.id}}
-      .idea-like.fa.fa-thumbs-up
-      .idea-unlike.fa.fa-thumbs-down
-      .idea-title= idea.title
-      .idea-description= idea.description
+      .col-md-2.likes
+        .idea-like.fa.fa-thumbs-up
+        .idea-unlike.fa.fa-thumbs-down
+      .col-md-8
+        %h2.idea-title= idea.title
+        .idea-description= idea.description
