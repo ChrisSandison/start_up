@@ -65,7 +65,7 @@
             - if current_user.has_created?(idea)
               .col-md-3.action-buttons
                 = link_to "Edit", edit_ideas_path(id: idea.id, filters: @filters), class: 'btn btn-md btn-primary'
-                = link_to "Delete", ideas_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-md btn-info'
+                = link_to "Delete", ideas_path(id: idea.id, filters: @filters), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-md btn-info'
 
           .row
             .col-md-12

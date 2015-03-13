@@ -48,8 +48,10 @@ class IdeasController < ApplicationController
   def destroy
     @idea = current_user.ideas.find_by_id(params[:id])
     redirect_to dashboard_path(not_found: true) if @idea.blank?
+    @filters = params[:filters]
+
     title = @idea.title
     @idea.destroy
-    redirect_to dashboard_path(destroyed: title)
+    redirect_to dashboard_path(destroyed: title, filters: @filters)
   end
 end
