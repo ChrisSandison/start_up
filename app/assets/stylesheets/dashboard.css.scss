@@ -14,3 +14,30 @@
 .idea-description {
   font-weight: 200;
 }
+
+.idea-header {
+  display: inline-block;
+}
+
+.idea-text {
+  margin-top: 10px;
+}
+
+.idea-link {
+  text-decoration: none;
+  margin-right: 40px;
+  font-size: 3em;
+  font-weight: 400;
+  display: inline-block;
+}
+
+.like-count, .dislike-count {
+  display: inline-block;
+  font-weight: 200;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-button {
+  margin-top: 10px;
+}

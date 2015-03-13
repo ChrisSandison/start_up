@@ -5,4 +5,13 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :ideas
+  has_many :likes
+
+  def has_liked?(idea)
+    idea.likes.where(user_id: self.id, like: true).present?
+  end
+
+  def has_disliked?(idea)
+    idea.likes.where(user_id: self.id, like: false).present?
+  end
 end

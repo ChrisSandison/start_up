@@ -28,7 +28,7 @@ end
   i = Idea.create(
     title: Faker::App.name,
     description: Faker::Lorem.paragraph(2),
-    industry_id: rand(1..5),
+    industry_id: Industry.all.random.id,
     user_id: User.all.random.id,
   )
   i.tag_list.add(tag_options.sample, tag_options.sample, tag_options.sample)

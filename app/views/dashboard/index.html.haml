@@ -1,9 +1,83 @@
-- @ideas.each do |idea|
-  .row
-    .idea{data: {idea_id: idea.id}}
-      .col-md-2.likes
-        .idea-like.fa.fa-thumbs-up
-        .idea-unlike.fa.fa-thumbs-down
-      .col-md-8
-        %h2.idea-title= idea.title
-        .idea-description= idea.description
+= hidden_field_tag 'filters', @filters
+
+.row
+  .filters
+    .col-lg-3
+      %label Industry
+      = select_tag "industry_filter", options_for_select(@industries.collect{ |i| [i.name, i.id]}), class: 'form-control', prompt: "Select an Industry"
+    .col-lg-3
+      %label Tags
+      %input{id: "tags_filter", class: 'form-control', data: {role: "tagsinput"}}
+    .col-lg-2
+      = button_tag "Filter", class: 'btn btn-lg btn-primary filter-button'
+
+- if @ideas.blank?
+  %h3 No ideas match your filters
+- else
+  - @ideas.each do |idea|
+    .row
+      .idea{data: {idea_id: idea.id}}
+        .col-md-2.likes
+
+          - if current_user.has_liked?(idea)
+            .idea-liked.liked.fa.fa-thumbs-o-up
+            .idea-like.like.fa.fa-thumbs-up.hidden
+          - else
+            .idea-liked.liked.fa.fa-thumbs-o-up.hidden
+            .idea-like.like.fa.fa-thumbs-up
+          - if current_user.has_disliked?(idea)
+            .idea-disliked.disliked.fa.fa-thumbs-o-down
+            .idea-dislike.dislike.fa.fa-thumbs-down.hidden
+          - else
+            .idea-disliked.disliked.fa.fa-thumbs-o-down.hidden
+            .idea-dislike.dislike.fa.fa-thumbs-down
+
+        .col-md-8
+          .idea-text
+            .idea-header
+              = link_to idea.title, ideas_path(id: idea.id), class: 'idea-link'
+              .likes-count
+                = "likes: #{idea.like_count}, dislikes: #{idea.dislike_count}"
+            %br
+            .idea-description= idea.description
+
+:coffeescript
+  $ ->
+    filters = JSON.parse($('#filters').val())
+    $('#industry_filter').val(filters.industry)
+    for tag in JSON.parse(filters.tags)
+      $('#tags_filter').tagsinput('add', tag)
+
+  $('.idea-like').click ->
+    idea = $(this).closest('.idea')
+    submit_action('like', idea)
+
+  $('.idea-dislike').click ->
+    idea = $(this).closest('.idea')
+    submit_action('dislike', idea)
+
+  $('.filter-button').click ->
+
+    filters =
+      industry: $('#industry_filter').val()
+      tags: JSON.stringify($('#tags_filter').tagsinput("items"))
+
+    url = '/dashboard?filters=' + JSON.stringify(filters)
+    window.location.href = url
+
+  submit_action = (action, idea) ->
+    $.ajax
+      dataType: 'json'
+      type: 'POST'
+      url: '/likes/new_' + action
+      data:
+        idea_id: idea.data().ideaId
+      success: (data) ->
+        idea = $('.idea[data-idea-id=' + data.idea_id + ']')
+        idea.find('.likes-count').text("likes: " + data.idea_likes + ", dislikes: " + data.idea_dislikes)
+        if data.liked
+          idea.find('.liked, .dislike').removeClass("hidden")
+          idea.find('.like, .disliked').addClass("hidden")
+        else
+          idea.find('.disliked, .like').removeClass("hidden")
+          idea.find('.liked, .dislike').addClass("hidden")

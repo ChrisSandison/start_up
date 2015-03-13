@@ -14,4 +14,8 @@ class IdeasController < ApplicationController
 
     redirect_to dashboard_path
   end
+
+  def show
+
+  end
 end
