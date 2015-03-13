@@ -1,13 +1,25 @@
 = hidden_field_tag 'filters', @filters
 
+- if @destroyed.present?
+  .row
+    .alert.alert-success
+      = "#{@destroyed} has been deleted."
 .row
   .filters
-    .col-lg-3
+    .col-lg-2
       %label Industry
       = select_tag "industry_filter", options_for_select(@industries.collect{ |i| [i.name, i.id]}), class: 'form-control', prompt: "Select an Industry"
-    .col-lg-3
+    .col-lg-4
       %label Tags
       %input{id: "tags_filter", class: 'form-control', data: {role: "tagsinput"}}
+      .hint-text
+        Press Enter to separate tags
+    .col-lg-2
+      %label Created By
+      = select_tag "created_by", options_for_select([["Me", "me"], ["Not Me", "not me"]]), class: 'form-control', include_blank: true
+    .col-lg-2
+      %label Sort By
+      = select_tag "sorted_by", options_for_select([["A-Z", "name desc"], ["Z-A", "name asc"], ["Newest", "newest"], ["Oldest", "oldest"]]), class: 'form-control', include_blank: true
     .col-lg-2
       = button_tag "Filter", class: 'btn btn-lg btn-primary filter-button'
 
@@ -33,20 +45,32 @@
             .idea-dislike.dislike.fa.fa-thumbs-down
 
         .col-md-8
-          .idea-text
-            .idea-header
-              = link_to idea.title, ideas_path(id: idea.id), class: 'idea-link'
+          .row
+            .col-md-5
+              .idea-text
+                .idea-header
+                  = link_to idea.title, ideas_path(id: idea.id), class: 'idea-link'
+            .col-md-4
               .likes-count
                 = "likes: #{idea.like_count}, dislikes: #{idea.dislike_count}"
-            %br
-            .idea-description= idea.description
+            - if current_user.has_created?(idea)
+              .col-md-3.action-buttons
+                = link_to "Edit", edit_ideas_path(id: idea.id), class: 'btn btn-md'
+                = link_to "Delete", ideas_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}
+
+          .row
+            .col-md-12
+              .idea-description= idea.description
 
 :coffeescript
   $ ->
+    debugger
     filters = JSON.parse($('#filters').val())
     $('#industry_filter').val(filters.industry)
     for tag in JSON.parse(filters.tags)
       $('#tags_filter').tagsinput('add', tag)
+    $('#created_by').val(filters.created_by)
+    $('#sorted_by').val(filters.sorted_by)
 
   $('.idea-like').click ->
     idea = $(this).closest('.idea')
@@ -57,10 +81,11 @@
     submit_action('dislike', idea)
 
   $('.filter-button').click ->
-
     filters =
       industry: $('#industry_filter').val()
       tags: JSON.stringify($('#tags_filter').tagsinput("items"))
+      created_by: $('#created_by').val()
+      sorted_by: $('#sorted_by').val()
 
     url = '/dashboard?filters=' + JSON.stringify(filters)
     window.location.href = url

@@ -18,4 +18,16 @@ class IdeasController < ApplicationController
   def show
 
   end
+
+  def edit
+
+  end
+
+  def destroy
+    @idea = current_user.ideas.find_by_id(params[:id])
+    redirect_to dashboard_path(not_found: true) if @idea.blank?
+    title = @idea.title
+    @idea.destroy
+    redirect_to dashboard_path(destroyed: title)
+  end
 end

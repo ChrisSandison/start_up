@@ -7,7 +7,6 @@ class NewIdeaForm < Form
   end
 
   def submit(attrs)
-    binding.pry
     idea_params = attrs[:new_idea_form]
     idea = Idea.new
     idea.title = idea_params[:title]

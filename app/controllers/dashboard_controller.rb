@@ -5,6 +5,7 @@ class DashboardController < ApplicationController
   def index
     @industries = Industry.all
     @ideas = Idea.all
+    @destroyed = params[:destroyed]
 
     if params[:filters].present?
     
@@ -14,14 +15,40 @@ class DashboardController < ApplicationController
         @ideas = @ideas.where(industry_id: filters["industry"])
       end
 
-      if filters["tags"].present?
+      if filters["tags"].present? 
         tags = JSON.parse(filters["tags"])
-        @ideas = @ideas.tagged_with(tags, any: true)
+        if tags.present?
+          @ideas = @ideas.tagged_with(tags, any: true)
+        end
       end
+
+      if filters["created_by"].present?
+        filter = filters["created_by"]
+        if filter == "not me"
+          @ideas = @ideas.where("user_id != ?", current_user.id)
+        elsif filter == "me"
+          @ideas = @ideas.where("user_id = ?", current_user.id)
+        end
+      end
+
+      if filters["sorted_by"].present?
+        case filters["sorted_by"]
+        when "name desc"
+          @ideas = @ideas.order(:title)
+        when "name asc"
+          @ideas = @ideas.order("title DESC")
+        when "newest"
+          @ideas = @ideas.order("created_at DESC")
+        when "oldest"
+          @ideas = @ideas.order("created_at ASC")
+        else
+          @ideas = @ideas
+        end
+      end
+
     end
 
     @filters = params[:filters]
-
     
   end
 end

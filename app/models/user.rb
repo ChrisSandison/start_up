@@ -14,4 +14,8 @@ class User < ActiveRecord::Base
   def has_disliked?(idea)
     idea.likes.where(user_id: self.id, like: false).present?
   end
+
+  def has_created?(obj)
+    obj.user_id == self.id
+  end
 end
