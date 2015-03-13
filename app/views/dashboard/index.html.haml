@@ -1,4 +1,5 @@
-= hidden_field_tag 'filters', @filters
+- if @filters.present?
+  = hidden_field_tag 'filters', @filters
 
 - if @destroyed.present?
   .row
@@ -73,12 +74,13 @@
 
 :coffeescript
   $ ->
-    filters = JSON.parse($('#filters').val())
-    $('#industry_filter').val(filters.industry)
-    for tag in JSON.parse(filters.tags)
-      $('#tags_filter').tagsinput('add', tag)
-    $('#created_by').val(filters.created_by)
-    $('#sorted_by').val(filters.sorted_by)
+    if $('#filters').length
+      filters = JSON.parse($('#filters').val())
+      $('#industry_filter').val(filters.industry)
+      for tag in JSON.parse(filters.tags)
+        $('#tags_filter').tagsinput('add', tag)
+      $('#created_by').val(filters.created_by)
+      $('#sorted_by').val(filters.sorted_by)
 
   $('.idea-like').click ->
     idea = $(this).closest('.idea')
