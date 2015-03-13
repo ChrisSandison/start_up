@@ -1,6 +1,6 @@
 class Idea < ActiveRecord::Base
-  has_one :user
-  has_one :industry
+  belongs_to :user
+  belongs_to :industry
   has_many :likes
 
   acts_as_taggable_on :tags

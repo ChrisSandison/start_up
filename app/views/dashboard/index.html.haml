@@ -4,6 +4,14 @@
   .row
     .alert.alert-success
       = "#{@destroyed} has been deleted."
+- if @not_found.present?
+  .row
+    .alert.alert-danger
+      = "That action can not be performed"
+- if @updated.present?
+  .row
+    .alert.alert-success
+      = "#{@updated.title} updated!"
 .row
   .filters
     .col-lg-2
@@ -49,22 +57,22 @@
             .col-md-5
               .idea-text
                 .idea-header
-                  = link_to idea.title, ideas_path(id: idea.id), class: 'idea-link'
+                  = link_to idea.title, ideas_path(id: idea.id, filters: @filters), class: 'idea-link'
             .col-md-4
               .likes-count
                 = "likes: #{idea.like_count}, dislikes: #{idea.dislike_count}"
             - if current_user.has_created?(idea)
               .col-md-3.action-buttons
-                = link_to "Edit", edit_ideas_path(id: idea.id), class: 'btn btn-md'
-                = link_to "Delete", ideas_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}
+                = link_to "Edit", edit_ideas_path(id: idea.id, filters: @filters), class: 'btn btn-md btn-primary'
+                = link_to "Delete", ideas_path(id: idea.id), method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-md btn-info'
 
           .row
             .col-md-12
-              .idea-description= idea.description
+              .idea-description
+                = idea.description
 
 :coffeescript
   $ ->
-    debugger
     filters = JSON.parse($('#filters').val())
     $('#industry_filter').val(filters.industry)
     for tag in JSON.parse(filters.tags)

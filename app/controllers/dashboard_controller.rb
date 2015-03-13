@@ -6,6 +6,8 @@ class DashboardController < ApplicationController
     @industries = Industry.all
     @ideas = Idea.all
     @destroyed = params[:destroyed]
+    @not_found = params[:not_found] if params[:not_found] == "true"
+    @updated = Idea.find_by_id(params[:updated])
 
     if params[:filters].present?
     

@@ -12,6 +12,7 @@ class NewIdeaForm < Form
     idea.title = idea_params[:title]
     idea.description = idea_params[:description]
     idea.industry_id = Industry.find_by_id(idea_params[:industry]).try(:id)
+    idea.user_id = user.id
     idea.tag_list.add(*idea_params[:tags].split(","))
 
     idea.save

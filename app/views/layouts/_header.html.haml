@@ -1,13 +1,13 @@
-%nav.navbar-default
+%nav.navbar.navbar-default
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{toggle: 'collapse', target: '#navbar-collapse-1'}
+      %button.navbar-toggle.collapsed{data: {toggle: 'collapse', target: '#header-collapse', type: 'button'}}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
       %a.navbar-brand{href: root_path} Start It Up
-    .collapse.navbar-collapse{id: 'navbar-collapse-1'}
+    #header-collapse.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
@@ -15,11 +15,11 @@
           %li.active
             = link_to "Start Idea", new_ideas_path
           %li
-            = link_to "Edit Profile", edit_user_registration_path
-          %li
             = link_to "Logout", destroy_user_session_path, method: :delete
         - else
           %li.active
             = link_to "Sign Up", new_user_registration_path
           %li
             = link_to "Login", new_user_session_path
+
+

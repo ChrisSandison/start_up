@@ -13,6 +13,10 @@
 
 .idea-description {
   font-weight: 200;
+  border: 1px solid #337AB7;
+  border-radius: 4px;
+  margin: 20px;
+  padding: 10px;
 }
 
 .idea-header {
@@ -34,7 +38,7 @@
 .likes-count{
   display: inline-block;
   font-weight: 200;
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .filter-button {
@@ -42,7 +46,7 @@
 }
 
 .action-buttons {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .hint-text {

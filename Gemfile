@@ -27,7 +27,6 @@ gem 'carrierwave'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 
-
 #dashboard
 gem 'will_paginate', '~> 3.0.5'
 gem 'bootstrap-will_paginate', '~> 0.0.10'

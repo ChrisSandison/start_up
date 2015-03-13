@@ -15,6 +15,7 @@ $fontAwesomeSvgPath: font-url("fontawesome-webfont.svg#fontawesomeregular");
 
 @import "bootstrap-tagsinput";
 @import "dashboard";
+@import "ideas";
 
 $error-red: #ff0033;
 
@@ -44,4 +45,8 @@ $error-red: #ff0033;
 .hint-text {
   font-weight: 200;
   font-size: 14px;
+}
+
+footer {
+  margin-top: 40px;
 }

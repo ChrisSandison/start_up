@@ -1,7 +1,9 @@
+= hidden_field_tag 'idea_tags', @edit_idea_form.tags_list.to_json
+
 .row
-  %h2 I have an Idea
+  %h2= "Update #{@edit_idea_form.idea.title}"
 .row
-  = simple_form_for @new_idea_form, url: ideas_path do |f|
+  = simple_form_for @edit_idea_form, url: ideas_path(id: @edit_idea_form.idea, filters: @filters), method: :put do |f|
     .row
       .col-lg-8
 
@@ -49,18 +51,21 @@
   $ ->
     $("select").addClass('form-control')
     $('.bootstrap-tagsinput input').attr("style", "width=100%")
+    for tag in JSON.parse($('#idea_tags').val())
+      $('#edit_idea_form_tags').tagsinput('add', tag)
 
-  $('#new_idea_form_title').bind 'input', ->
+  $('#edit_idea_form_title').bind 'input', ->
+    debugger
     validate_title()
 
-  $('#new_idea_form_description').bind 'input', ->
+  $('#edit_idea_form_description').bind 'input', ->
     validate_description()
 
-  $('#new_idea_form_industry').change ->
+  $('#edit_idea_form_industry').change ->
     validate_industry()
 
   validate_title =->
-    if $('#new_idea_form_title').val() == ""
+    if $('#edit_idea_form_title').val() == ""
       $('#title_error').removeClass("hidden")
       return false
     else
@@ -68,7 +73,7 @@
       return true
 
   validate_description =->
-    if $("#new_idea_form_description").val() == ""
+    if $("#edit_idea_form_description").val() == ""
       $('#description_error').removeClass("hidden")
       return false
     else
@@ -76,7 +81,7 @@
       return true
 
   validate_industry =->
-    if $('#new_idea_form_industry').val() == ""
+    if $('#edit_idea_form_industry').val() == ""
       $('#industry_error').removeClass("hidden")
       return false
     else
@@ -84,7 +89,7 @@
       return true
 
   validate_tags =->
-    if $('#new_idea_form_tags').val() == ""
+    if $('#edit_idea_form_tags').val() == ""
       $('#tag_error').removeClass("hidden")
       return false
     else
@@ -92,8 +97,8 @@
       return true
 
   $('form').submit (event) ->
-    if (validate_title() && validate_description() && validate_industry() && validate_tags())
+    debugger
+    if validate_title() && validate_description() && validate_industry() && validate_tags()
       return true
     else
       event.preventDefault()
-      return false
