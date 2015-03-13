@@ -24,12 +24,15 @@ tag_options = []
   tag_options << Faker::Lorem.word
 end
 
+industries = Industry.pluck(:id)
+users = User.pluck(:id)
+
 100.times do
   i = Idea.create(
     title: Faker::App.name,
     description: Faker::Lorem.paragraph(2),
-    industry_id: Industry.all.random.id,
-    user_id: User.all.random.id,
+    industry_id: industries.sample,
+    user_id: users.sample,
   )
   i.tag_list.add(tag_options.sample, tag_options.sample, tag_options.sample)
   i.save

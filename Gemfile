@@ -17,14 +17,11 @@ gem 'font-awesome-rails'
 gem 'font-awesome-sass'
 gem 'haml-rails'
 gem 'simple_form'
-gem 'simple_form_fancy_uploads'
-gem 'cocoon'
 gem 'html2haml'
 
 #profiles
 gem 'devise'
 gem 'omniauth'
-gem 'carrierwave'
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'faker'
