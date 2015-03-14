@@ -14,6 +14,8 @@ GEM
       activesupport (= 4.1.8)
       builder (~> 3.1)
       erubis (~> 2.7.0)
+    active_model_serializers (0.9.3)
+      activemodel (>= 3.2)
     activemodel (4.1.8)
       activesupport (= 4.1.8)
       builder (~> 3.1)
@@ -45,15 +47,7 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
-    bootstrap-will_paginate (0.0.10)
-      will_paginate
     builder (3.2.2)
-    capybara (2.4.4)
-      mime-types (>= 1.16)
-      nokogiri (>= 1.3.3)
-      rack (>= 1.0.0)
-      rack-test (>= 0.5.4)
-      xpath (~> 2.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -62,18 +56,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1)
-    cucumber (1.3.19)
-      builder (>= 2.1.2)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 2.12)
-      multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.2)
-    cucumber-rails (1.4.2)
-      capybara (>= 1.1.2, < 3)
-      cucumber (>= 1.3.8, < 2)
-      mime-types (>= 1.16, < 3)
-      nokogiri (~> 1.5)
-      rails (>= 3, < 5)
     database_cleaner (1.4.1)
     debug_inspector (0.0.2)
     devise (3.4.1)
@@ -86,19 +68,12 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.4.0)
-    factory_girl (4.5.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.5.0)
-      factory_girl (~> 4.5.0)
-      railties (>= 3.0.0)
     faker (1.4.3)
       i18n (~> 0.5)
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     font-awesome-sass (4.3.1)
       sass (~> 3.2)
-    gherkin (2.12.2)
-      multi_json (~> 1.3)
     haml (4.0.6)
       tilt
     haml-rails (0.9.0)
@@ -122,6 +97,9 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     launchy (2.4.3)
       addressable (~> 2.3)
     mail (2.6.3)
@@ -131,7 +109,6 @@ GEM
     mini_portile (0.6.2)
     minitest (5.5.1)
     multi_json (1.11.0)
-    multi_test (0.1.2)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     omniauth (1.2.2)
@@ -237,25 +214,20 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
-    will_paginate (3.0.7)
-    xpath (2.0.0)
-      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers
   acts-as-taggable-on (~> 3.4)
   awesome_print
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.3)
-  bootstrap-will_paginate (~> 0.0.10)
   coffee-rails (~> 4.0.0)
-  cucumber-rails
   database_cleaner
   devise
-  factory_girl_rails
   faker
   font-awesome-rails
   font-awesome-sass
@@ -263,6 +235,7 @@ DEPENDENCIES
   html2haml
   jbuilder (~> 2.0)
   jquery-rails
+  kaminari
   launchy
   omniauth
   pg
@@ -280,4 +253,3 @@ DEPENDENCIES
   sqlite3
   turbolinks
   uglifier (>= 1.3.0)
-  will_paginate (~> 3.0.5)

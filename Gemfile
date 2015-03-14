@@ -11,6 +11,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
+gem 'kaminari'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 gem 'font-awesome-rails'
@@ -26,16 +27,14 @@ gem 'omniauth'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'faker'
 
-#dashboard
-gem 'will_paginate', '~> 3.0.5'
-gem 'bootstrap-will_paginate', '~> 0.0.10'
+# api
+gem 'active_model_serializers'
 
 group :development, :test do
   gem 'sqlite3'
   gem 'awesome_print'
   gem 'rspec-rails'
   gem 'rspec_junit_formatter'
-  gem 'cucumber-rails', :require => false
   gem 'spring'
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -43,7 +42,6 @@ group :development, :test do
   gem 'pry-nav'
   gem 'pry-rails'
   gem 'database_cleaner'
-  gem 'factory_girl_rails', :require => false
   
   gem 'launchy'
   gem 'randumb'
