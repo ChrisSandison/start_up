@@ -29,6 +29,8 @@ gem 'faker'
 
 # api
 gem 'active_model_serializers'
+gem 'googlecharts'
+gem 'httparty'
 
 group :development, :test do
   gem 'sqlite3'

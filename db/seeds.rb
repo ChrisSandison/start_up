@@ -37,3 +37,20 @@ users = User.pluck(:id)
   i.tag_list.add(tag_options.sample, tag_options.sample, tag_options.sample)
   i.save
 end
+
+ideas = Idea.pluck(:id)
+
+User.all.each do |user|
+  30.times do
+    # draw a true or false
+    like = rand(2)
+    idea_id = ideas.sample
+    if Like.where("user_id = ? and idea_id = ?", user.id, idea_id).blank?
+      if like == 1
+        Like.create(user_id: user.id, idea_id: idea_id, like: true)
+      else
+        Like.create(user_id: user.id, idea_id: idea_id, like: false)
+      end 
+    end
+  end
+end

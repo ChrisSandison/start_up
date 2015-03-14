@@ -11,9 +11,13 @@ Rails.application.routes.draw do
 
   get 'dashboard' => 'dashboard#index'
 
+  get 'analytics' => 'analytics#index'
+
   namespace :api do
     namespace :v1 do
       resources :ideas
+
+      get 'ideas_chart' => 'ideas#ideas_chart'
     end
   end
 end

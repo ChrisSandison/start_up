@@ -15,6 +15,8 @@
           %li.active
             = link_to "Start Idea", new_ideas_path
           %li
+            = link_to "Analytics", analytics_path
+          %li
             = link_to "Logout", destroy_user_session_path, method: :delete
         - else
           %li.active

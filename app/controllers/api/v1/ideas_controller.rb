@@ -9,11 +9,21 @@ class Api::V1::IdeasController < Api::BaseController
     end_time = Time.at(params["end"].to_i)
     end_time = DateTime.new(end_time.year, end_time.month, end_time.day)
 
-    k = params.has_key?("amount") ? params[:amount].to_i : @ideas.count - 1
+    k = params.has_key?("count") ? params[:count].to_i : @ideas.count - 1
 
-    binding.pry
     @ideas = @ideas.where("created_at > ? and created_at < ?", start_time, end_time).sort_by(&:like_count).reverse[0..k]
 
+  end
+
+  def ideas_chart
+    idea_count = Idea.count
+
+    size = params.has_key?("size") ? params[:size] : "700x600"
+
+    @industries = Industry.all
+    @chart = Gchart.pie_3d(legend: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: size)
+
+    render json: { chart_type: "Pie", chart_url: @chart}
   end
 
   private

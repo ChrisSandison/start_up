@@ -1,0 +1,35 @@
+.col-lg-6
+  .row
+    .top10
+      .top10-description
+        %h1 The Top 10 Ideas of the Week
+      .ideas-list
+.col-lg-6
+  .row
+    .chart-title
+      %h1 Ideas by Industry
+    .chart
+
+
+:coffeescript
+  $ ->
+    $.ajax
+      dataType: 'json'
+      type: 'GET'
+      url: '/api/v1/ideas'
+      data:
+        start: "1420070400"
+        end: "1426453593"
+        count: "10"
+      success: (data) ->
+        for idea in data.ideas
+          $('.ideas-list').append('<div class="idea-item"><div class="idea-title"><h3>' + idea.title + '</h3></div>' + '<div class="idea-counts"><p>likes: ' + idea.likes + ', dislikes: ' + idea.dislikes + '</p></div>' + '<div class="idea-description"><p>' + idea.description + '</div></div>')
+
+    $.ajax
+      dataType: 'json'
+      type: 'GET'
+      url: '/api/v1/ideas_chart'
+      data:
+        size: "600x500"
+      success: (data) ->
+        $('.chart').append('<img src="' + data.chart_url + '">')
