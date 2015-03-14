@@ -1,7 +1,10 @@
+puts "Clearing tables..."
 User.destroy_all
 Industry.destroy_all
 Idea.destroy_all
+Like.destroy_all
 
+puts "Creating users..."
 User.create(
   email: "chris.sandison@gmail.com",
   password: "password",
@@ -15,6 +18,7 @@ User.create(
     )
 end
 
+puts "Creating communities..."
 %w(health technology education finance travel).each do |tag|
   Industry.create(name: tag.capitalize)
 end
@@ -27,6 +31,8 @@ end
 industries = Industry.pluck(:id)
 users = User.pluck(:id)
 
+
+puts "Coming up with ideas..."
 100.times do
   i = Idea.create(
     title: Faker::App.name,
@@ -40,6 +46,8 @@ end
 
 ideas = Idea.pluck(:id)
 
+
+puts "Liking ideas..."
 User.all.each do |user|
   30.times do
     # draw a true or false
