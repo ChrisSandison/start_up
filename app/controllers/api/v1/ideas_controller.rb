@@ -21,7 +21,7 @@ class Api::V1::IdeasController < Api::BaseController
     size = params.has_key?("size") ? params[:size] : "700x600"
 
     @industries = Industry.all
-    @chart = Gchart.pie_3d(legend: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: size)
+    @chart = Gchart.pie(labels: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: size)
 
     render json: { chart_type: "Pie", chart_url: @chart}
   end
