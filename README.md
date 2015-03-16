@@ -32,9 +32,9 @@ Gets the *count* most liked ideas within *start* and *end*
 
 Without parameters, this method will return the top 10 ideas of the week.
 
-** Response **
+**Response**
 
-```javascript
+```json
 { 
   "ideas" : [
     {
@@ -60,9 +60,9 @@ Gets a url for a google chart, breaking down the number of ideas by industry. On
 
 * none
 
-** Response **
+**Response**
 
-```javascript
+```json
 {
   "chart_type" : "Pie",
   "chart_url" : <url>
