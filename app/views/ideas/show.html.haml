@@ -24,6 +24,8 @@
     .col-md-offset-2.col-md-8.col-md-offset-2
       .show-description
         = @idea.description
+      .idea-created-by
+        = "Created by #{@idea.user.username}"
   .row
     .col-md-offset-5.col-md-2
       = link_to "Back", dashboard_path(filters: @filters), class: "btn btn-info btn-block"

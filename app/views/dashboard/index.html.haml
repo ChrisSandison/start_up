@@ -70,7 +70,10 @@
           .row
             .col-md-12
               .idea-description
-                = idea.description
+                %p
+                  = idea.description
+                %p.idea-credit
+                  = "Submitted by #{idea.user.username}"
 
 :coffeescript
   $ ->

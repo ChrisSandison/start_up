@@ -11,7 +11,7 @@
       %ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
           %li
-            = link_to "Logged in as #{current_user.email}", "#"
+            = link_to "Logged in as #{current_user.username}", "#"
           %li.active
             = link_to "Start Idea", new_ideas_path
           %li

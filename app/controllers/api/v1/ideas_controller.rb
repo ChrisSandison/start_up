@@ -12,7 +12,6 @@ class Api::V1::IdeasController < Api::BaseController
     k = params.has_key?("count") ? params[:count].to_i : @ideas.count - 1
 
     @ideas = @ideas.where("created_at > ? and created_at < ?", start_time, end_time).sort_by(&:like_count).reverse[0..k]
-
   end
 
   def ideas_chart

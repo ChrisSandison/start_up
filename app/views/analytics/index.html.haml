@@ -1,3 +1,6 @@
+= hidden_field_tag 'end_date', (Time.now + 1.day).to_i
+= hidden_field_tag 'start_date', (Time.now - 7.days).to_i
+
 .col-lg-6
   .row
     .top10
@@ -18,12 +21,12 @@
       type: 'GET'
       url: '/api/v1/ideas'
       data:
-        start: "1420070400"
-        end: "1426453593"
+        start: $('#start_date').val()
+        end: $('#end_date').val()
         count: "10"
       success: (data) ->
         for idea in data.ideas
-          $('.ideas-list').append('<div class="idea-item"><div class="idea-title"><h3>' + idea.title + '</h3></div>' + '<div class="idea-counts"><p>likes: ' + idea.likes + ', dislikes: ' + idea.dislikes + '</p></div>' + '<div class="idea-description"><p>' + idea.description + '</div></div>')
+          $('.ideas-list').append('<div class="idea-item"><div class="idea-title"><h3>' + idea.title + '</h3></div><div class="idea-created"> Created by: ' + idea.created_by + '</div><div class="idea-counts"><p>likes: ' + idea.likes + ', dislikes: ' + idea.dislikes + '</p></div>' + '<div class="idea-description"><p>' + idea.description + '</div></div>')
 
     $.ajax
       dataType: 'json'

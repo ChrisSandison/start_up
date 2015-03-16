@@ -2,10 +2,12 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, authentication_keys: [:username]
 
   has_many :ideas
   has_many :likes
+
+  validates :username, presence: true
 
   def has_liked?(idea)
     idea.likes.where(user_id: self.id, like: true).present?

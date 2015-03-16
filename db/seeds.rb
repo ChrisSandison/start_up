@@ -6,12 +6,14 @@ Like.destroy_all
 
 puts "Creating users..."
 User.create(
+  username: "chris",
   email: "chris.sandison@gmail.com",
   password: "password",
   password_confirmation: "password")
 
 20.times do
   User.create(
+    username: Faker::Internet.user_name,
     email: Faker::Internet.email,
     password: "password",
     password_confirmation: "password"

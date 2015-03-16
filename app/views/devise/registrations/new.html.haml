@@ -11,6 +11,10 @@
           //style this lol
           = devise_error_messages! 
 
+
+          .div{class: 'form-group has-warning', id: 'signup-username'}
+            %div{class: "input-group"}
+              = f.text_field :username, required: true, class: 'form-control input-sm', label: false, placeholder: 'Username', id: 'signup-email-input', size: 100
           .div{class: 'form-group has-warning', id: 'signup-email'}
             %div{class: "input-group"}
               = f.text_field :email, required: true, class: 'form-control input-sm', label: false, placeholder: 'Email', id: 'signup-email-input', size: 100
