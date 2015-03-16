@@ -17,10 +17,11 @@ class Api::V1::IdeasController < Api::BaseController
   def ideas_chart
     idea_count = Idea.count
 
-    size = params.has_key?("size") ? params[:size] : "700x600"
+    width = params.has_key?("width") ? params[:width] : "700"
+    height = params.has_key?("height") ? params[:height] : "600"
 
     @industries = Industry.all
-    @chart = Gchart.pie(labels: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: size)
+    @chart = Gchart.pie(labels: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: "#{width}x#{height}")
 
     render json: { chart_type: "Pie", chart_url: @chart}
   end

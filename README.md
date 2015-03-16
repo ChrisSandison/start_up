@@ -58,7 +58,8 @@ Gets a url for a google chart, breaking down the number of ideas by industry. On
 
 **Query Parameters**
 
-* none
+* `height` - height of chart in pixels (default: "700")
+* `width` - width of chart in pixels (default: "600")
 
 **Response**
 
@@ -68,8 +69,5 @@ Gets a url for a google chart, breaking down the number of ideas by industry. On
   "chart_url" : <url>
 }
 ```
-
-
-
 
 An example of this api is utilized on the site. After logging in, click on "Analytics" in the site header.
