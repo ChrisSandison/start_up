@@ -3,13 +3,13 @@ class Api::V1::IdeasController < Api::BaseController
   def index
     @ideas = Idea.all
 
-    start_time = Time.at(params["start"].to_i)
+    start_time = params.has_key?("start") ? Time.at(params["start"].to_i) : Time.now - 7.days
     start_date = DateTime.new(start_time.year, start_time.month, start_time.day)
 
-    end_time = Time.at(params["end"].to_i)
+    end_time = params.has_key?("end") ? Time.at(params["end"].to_i) : Time.now + 1.day
     end_time = DateTime.new(end_time.year, end_time.month, end_time.day)
 
-    k = params.has_key?("count") ? params[:count].to_i : @ideas.count - 1
+    k = params.has_key?("count") ? params[:count].to_i : 10
 
     @ideas = @ideas.where("created_at > ? and created_at < ?", start_time, end_time).sort_by(&:like_count).reverse[0..k]
   end
