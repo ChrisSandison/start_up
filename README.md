@@ -34,7 +34,7 @@ Without parameters, this method will return the top 10 ideas of the week.
 
 **Response**
 
-```json
+```
 { 
   "ideas" : [
     {
@@ -62,7 +62,7 @@ Gets a url for a google chart, breaking down the number of ideas by industry. On
 
 **Response**
 
-```json
+```
 {
   "chart_type" : "Pie",
   "chart_url" : <url>
