@@ -22,7 +22,6 @@ class Api::V1::IdeasController < Api::BaseController
 
     @industries = Industry.all
     @chart = "https://chart.googleapis.com/chart?" + "chs=#{width}x#{height}" + "&chd=t:#{@industries.map{ |industry| industry.ideas.count }.join(",")}" + "&cht=p3" + "&chl=#{@industries.map(&:name).join("|")}"
-    binding.pry
 
     render json: { chart_type: "Pie", chart_url: @chart}
   end
