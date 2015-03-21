@@ -17,11 +17,12 @@ class Api::V1::IdeasController < Api::BaseController
   def ideas_chart
     idea_count = Idea.count
 
-    width = params.has_key?("width") ? params[:width] : "700"
-    height = params.has_key?("height") ? params[:height] : "600"
+    width = (params.has_key?("width") && params[:width].to_i <= 450 ) ? params[:width] : "450"
+    height = (params.has_key?("height") && params[:height] && params[:height].to_i <= 200) ? params[:height] : "200"
 
     @industries = Industry.all
-    @chart = Gchart.pie(labels: @industries.map(&:name), data: @industries.map { |industry| industry.ideas.count }, size: "#{width}x#{height}")
+    @chart = "https://chart.googleapis.com/chart?" + "chs=#{width}x#{height}" + "&chd=t:#{@industries.map{ |industry| industry.ideas.count }.join(",")}" + "&cht=p3" + "&chl=#{@industries.map(&:name).join("|")}"
+    binding.pry
 
     render json: { chart_type: "Pie", chart_url: @chart}
   end
@@ -30,16 +31,6 @@ class Api::V1::IdeasController < Api::BaseController
 
     def idea_params
       params.require(:amount, :start_date, :end_date)
-    end
-
-    def query_params
-      # this assumes that an album belongs to an artist and has an :artist_id
-      # allowing us to filter by this
-      
-    end
-
-    def set_resource
-
     end
 
 end

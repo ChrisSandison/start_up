@@ -3,7 +3,7 @@ class AnalyticsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    
+    @industries = Industry.all
   end 
 
   private

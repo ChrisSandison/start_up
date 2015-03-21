@@ -23,14 +23,14 @@ gem 'html2haml'
 #profiles
 gem 'devise'
 gem 'omniauth'
+gem 'whenever', :require => false
 
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'faker'
 
 # api
 gem 'active_model_serializers'
-gem 'googlecharts'
-gem 'httparty'
+gem "chartkick"
 
 group :development, :test do
   gem 'sqlite3'
