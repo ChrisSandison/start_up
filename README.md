@@ -58,8 +58,8 @@ Gets a url for a google chart, breaking down the number of ideas by industry. On
 
 **Query Parameters**
 
-* `height` - height of chart in pixels (default: "700")
-* `width` - width of chart in pixels (default: "600")
+* `height` - height of chart in pixels (default and maximum: "200")
+* `width` - width of chart in pixels (default and maximium: "450")
 
 **Response**
 
